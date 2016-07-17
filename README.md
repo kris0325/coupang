@@ -34,7 +34,7 @@ export PATH=$PATH:/Users/wenkangyang/Library/apache-tomcat-8.0.36/bin
 5. Install Groovy, open a separate terminal window, run 'brew install groovy'. This will take a long time (30+ minutes), you could start it and go ahead with the next steps.
 
 6. Install IntelliJ, file - ideaIU-12.1.7b.dmg.
- 注意：ide是企业版 需要lisence 
+ 注意：ide是企业版 需要lisence 这边用的是公司内部的lisence，你们得自己去弄
 
 7. Install Lombok plugins
    You could install lombok plugin directly from IntelliJ plugins management.
@@ -56,6 +56,7 @@ open a separate terminal window, run 'brew install redits’.
 
 12.instal rabbitmq 
 open a separate terminal window, run 'brew install rabbitmq’.
+
 
 
 
