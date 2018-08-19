@@ -65,7 +65,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Elasticserach jestClient示例
- * @author fendo
+ * @author 
  *
  */
 
