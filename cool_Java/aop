@@ -1,0 +1,55 @@
+@Component("AspectService")
+@Aspect
+public class AspectService {
+
+        //定义切点
+        @Pointcut("execution(* com.qimen.api.DefaultQimenClient.*(..))")
+        public void method(){}
+        /**
+         * 前置通知(注解中的sayings()方法，其实就是上面定义pointcut切点注解所修饰的方法名，那只是个代理对象,不需要写具体方法，
+         * 相当于xml声明切面的id名，如下，相当于id="embark",用于供其他通知类型引用)
+         * <aop:config>
+         <aop:aspect ref="mistrel">
+         <!-- 定义切点 -->
+         <aop:pointcut expression="execution(* *.saying(..))" id="embark"/>
+         <!-- 声明前置通知 (在切点方法被执行前调用) -->
+         <aop:before method="beforSay" pointcut-ref="embark"/>
+         <!-- 声明后置通知 (在切点方法被执行后调用) -->
+         <aop:after method="afterSay" pointcut-ref="embark"/>
+         </aop:aspect>
+         </aop:config>
+         */
+        @Before("method()")
+        public void sayHello(){
+            System.out.println("注解类型前置通知");
+        }
+//        //后置通知
+//        @After("sayings()")
+//        public void sayGoodbey(){
+//            System.out.println("注解类型后置通知");
+//        }
+
+    //返回值
+
+    @AfterReturning(returning = "rvt", pointcut = "execution(* com.***.impl.***ServiceImpl.***OrderCreate(..))")
+    public Object getResponse(JoinPoint joinPoint, Object rvt){
+        List<Object> args =  Arrays.asList(joinPoint.getArgs());
+        String name = joinPoint.getSignature().getName();
+        BiliLog.info("方法名" +JSON.toJSONString(name) );
+
+        BiliLog.info("请求报文" +JSON.toJSONString(args) );
+
+        BiliLog.info("响应报文" +JSON.toJSONString(rvt) );
+
+        return rvt;
+    }
+
+        //环绕通知。注意要有ProceedingJoinPoint参数传入。
+//        @Around("sayings()")
+//        public void sayAround(ProceedingJoinPoint pjp) throws Throwable{
+//            System.out.println("注解类型环绕通知..环绕前");
+//            pjp.proceed();//执行方法
+//            System.out.println(JSON.toJSONString(pjp.getArgs()));
+//            System.out.println("注解类型环绕通知..环绕后");
+//        }
+}
