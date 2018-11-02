@@ -279,9 +279,34 @@ public class DateConvertUtils {
     }
 }
 
+    /**
+     * 时间戳转换成Date型
+     * @param seconds 精确到秒的字符串
+     * @param formatStr
+     * @return
+     */
+    public static Date timeStampToDate(String seconds) {
+        if(seconds == null || seconds.isEmpty() || seconds.equals("null")){
+            return null;
+        }
+        return new Date(Long.valueOf(seconds+"000"));
+    }
 
 
 
+    /**
+     * Date型转换成秒级时间戳
+     * @param date
+     * @return 精确到秒的时间戳 Integer
+     */
+    public static Integer dateToTimeStamp(Date date) {
+        if(date == null) {
+            return null;
+        }
+        Long longtime = date.getTime() / 1000;
+
+        return longtime.intValue();
+    }
 
 
 
