@@ -1,0 +1,13 @@
+ //求最大值 最小值
+        Map<Long, List<PurchaseOrderSku>> skuPoSkuMap = purchaseOrderSkus.stream().collect(Collectors.groupingBy(PurchaseOrderSku::getSkuId));
+
+        for (Map.Entry<Long, List<PurchaseOrderSku>> entry : skuPoSkuMap.entrySet()) {
+            SkuPurchasePriceDto skuPurchasePriceDto = new SkuPurchasePriceDto();
+//求最大值 最小值
+            Integer maxPurchasePrice = entry.getValue().stream().mapToInt(posku -> posku.getSkuPrice()).max().getAsInt();
+            Integer minPurchasePrice = entry.getValue().stream().mapToInt(posku -> posku.getSkuPrice()).min().getAsInt();
+            skuPurchasePriceDto.setMaxPurchasePrice(maxPurchasePrice);
+            skuPurchasePriceDto.setMinPurchasePrice(minPurchasePrice);
+            skuPurchasePriceDto.setSkuId(entry.getKey());
+            skuPurchasePriceDtos.add(skuPurchasePriceDto);
+        }
